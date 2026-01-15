@@ -185,6 +185,47 @@ Want to add your own aliases? Edit:
 
 To show git branch, k8s context, and AWS profile in your prompt, uncomment the prompt section at the bottom of `coderco.sh`.
 
+## Install Development Tools (macOS)
+
+For macOS users, we provide a `Brewfile` to install all development tools and dependencies:
+
+### Prerequisites
+
+```bash
+# Install Homebrew if you don't have it
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+### Install All Tools
+
+```bash
+# Clone the repo (if you haven't already)
+git clone https://github.com/Coderco-Learning/dotfiles.git ~/.coderco-dotfiles
+cd ~/.coderco-dotfiles
+
+# Install all tools from Brewfile
+brew bundle --file=Brewfile
+```
+
+This will install:
+- **Development Tools**: Git, Node, Python, Go, Ruby, Rust
+- **Infrastructure Tools**: Terraform, Kubernetes, Helm, Docker tools
+- **Shell Tools**: Zsh, Oh My Zsh, Powerlevel10k, tmux
+- **Desktop Apps**: VS Code, iTerm2, Chrome, Slack, etc.
+- **VS Code Extensions**: All recommended extensions for DevOps
+
+### Install Specific Categories
+
+You can also install tools selectively by editing the `Brewfile` and removing sections you don't need.
+
+### Verify Installation
+
+After installation, run:
+
+```bash
+~/.coderco-dotfiles/verify.sh
+```
+
 ## Verify Installation
 
 Check that everything is working:
@@ -217,6 +258,7 @@ rm -rf ~/.coderco-dotfiles
 | `coderco.sh` | Main aliases and functions |
 | `install.sh` | Installation script |
 | `verify.sh` | Verify tool installation |
+| `Brewfile` | Homebrew bundle file (macOS tools) |
 | `CHEATSHEET.md` | Printable quick reference |
 
 ## Troubleshooting
