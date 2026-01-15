@@ -1,10 +1,10 @@
 # CoderCo Dotfiles
 
-Productivity aliases and functions for DevOps engineers. Part of the [CoderCo](https://coderco.io) learning platform.
+Productivity aliases and functions for DevOps engineers. Part of the [CoderCo](https://skool.io/coderco) learning platform.
 
 ## Quick Start
 
-1. Install: `curl -fsSL https://raw.githubusercontent.com/coderco-learning/dotfiles/main/install.sh | bash`
+1. Install: `curl -fsSL https://raw.githubusercontent.com/Coderco-Learning/dotfiles/main/install.sh | bash`
 2. Restart terminal or run: `source ~/.bashrc` (or `~/.zshrc`)
 3. Type `aliases` to see available shortcuts
 4. Run `~/.coderco-dotfiles/verify.sh` to check your setup
@@ -14,13 +14,13 @@ Productivity aliases and functions for DevOps engineers. Part of the [CoderCo](h
 ### One-Line Install (Recommended)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/coderco-learning/dotfiles/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Coderco-Learning/dotfiles/main/install.sh | bash
 ```
 
 ### Manual Install
 
 ```bash
-git clone https://github.com/coderco-learning/dotfiles.git ~/.coderco-dotfiles
+git clone https://github.com/Coderco-Learning/dotfiles.git ~/.coderco-dotfiles
 cd ~/.coderco-dotfiles
 ./install.sh
 ```
@@ -240,4 +240,4 @@ MIT
 
 ---
 
-Made by [CoderCo](https://coderco.io)
+Made by [Mo Abukar](github.com/moabukar)
