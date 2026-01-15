@@ -1,7 +1,7 @@
 #!/bin/bash
 # ============================================================================
 # CoderCo Dotfiles Installer
-# https://github.com/coderco-learning/dotfiles
+# https://github.com/Coderco-Learning/dotfiles
 # ============================================================================
 
 set -euo pipefail
@@ -18,7 +18,7 @@ NC='\033[0m'
 echo ""
 echo "============================================================================"
 echo "  CoderCo Dotfiles Installer"
-echo "  https://coderco.io"
+echo "  https://skool.io/coderco"
 echo "============================================================================"
 echo ""
 
@@ -81,13 +81,13 @@ fi
 # Download if not available locally
 if [ ! -f "$CODERCO_SH" ]; then
     echo -e "${YELLOW}Downloading from GitHub...${NC}"
-    if ! curl -fsSL https://raw.githubusercontent.com/coderco-learning/dotfiles/main/coderco.sh -o "$CODERCO_SH"; then
+    if ! curl -fsSL https://raw.githubusercontent.com/Coderco-Learning/dotfiles/main/coderco.sh -o "$CODERCO_SH"; then
         echo -e "${RED}Failed to download coderco.sh${NC}"
         exit 1
     fi
     # Also download verify.sh if not present
     if [ ! -f "${DOTFILES_DIR}/verify.sh" ]; then
-        curl -fsSL https://raw.githubusercontent.com/coderco-learning/dotfiles/main/verify.sh -o "${DOTFILES_DIR}/verify.sh" 2>/dev/null || true
+        curl -fsSL https://raw.githubusercontent.com/Coderco-Learning/dotfiles/main/verify.sh -o "${DOTFILES_DIR}/verify.sh" 2>/dev/null || true
     fi
 fi
 
