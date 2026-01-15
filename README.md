@@ -210,9 +210,18 @@ brew bundle --file=Brewfile
 This will install:
 - **Development Tools**: Git, Node, Python, Go, Ruby, Rust
 - **Infrastructure Tools**: Terraform, Kubernetes, Helm, Docker tools
-- **Shell Tools**: Zsh, Oh My Zsh, Powerlevel10k, tmux
+- **Shell Tools**: Zsh, zsh plugins, tmux
 - **Desktop Apps**: VS Code, iTerm2, Chrome, Slack, etc.
 - **VS Code Extensions**: All recommended extensions for DevOps
+
+**Note:** Oh My Zsh and Powerlevel10k are not included in the Brewfile. Install them separately:
+```bash
+# Install Oh My Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Install Powerlevel10k theme
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+```
 
 ### Install Specific Categories
 
@@ -224,6 +233,24 @@ After installation, run:
 
 ```bash
 ~/.coderco-dotfiles/verify.sh
+```
+
+## Optional: Custom .zshrc Configuration
+
+For zsh users, we provide a simple `.zshrc` configuration with:
+- Oh My Zsh and Powerlevel10k setup
+- Tool completions (kubectl, helm, terraform, aws, docker)
+- Essential aliases
+- Environment variables
+
+During installation, you'll be prompted to install it. Or install manually:
+
+```bash
+# Backup your existing .zshrc
+cp ~/.zshrc ~/.zshrc.backup
+
+# Install CoderCo .zshrc
+cp ~/.coderco-dotfiles/.zshrc ~/.zshrc
 ```
 
 ## Verify Installation
@@ -256,6 +283,7 @@ rm -rf ~/.coderco-dotfiles
 | File | Purpose |
 |------|---------|
 | `coderco.sh` | Main aliases and functions |
+| `.zshrc` | Optional zsh configuration |
 | `install.sh` | Installation script |
 | `verify.sh` | Verify tool installation |
 | `Brewfile` | Homebrew bundle file (macOS tools) |

@@ -32,11 +32,11 @@ check_tool() {
     
     if command -v "$cmd" &> /dev/null; then
         version=$($cmd $version_cmd 2>&1 | head -1 | cut -c 1-50)
-        echo -e "${GREEN}✓${NC}  $version"
+        echo -e "${GREEN}OK${NC}  $version"
         ((PASS++))
         return 0
     else
-        echo -e "${RED}✗ NOT INSTALLED${NC}"
+        echo -e "${RED}NOT INSTALLED${NC}"
         ((FAIL++))
         return 1
     fi
@@ -75,12 +75,12 @@ echo -e "${BLUE}System Status${NC}"
 # Check Docker daemon
 printf "  %-20s" "Docker daemon:"
 if command -v docker &> /dev/null && docker info &> /dev/null; then
-    echo -e "${GREEN}✓ RUNNING${NC}"
+    echo -e "${GREEN}RUNNING${NC}"
 else
     if command -v docker &> /dev/null; then
-        echo -e "${YELLOW}⚠ NOT RUNNING${NC} (start Docker Desktop)"
+        echo -e "${YELLOW}NOT RUNNING${NC} (start Docker Desktop)"
     else
-        echo -e "${YELLOW}⚠ NOT RUNNING${NC} (Docker not installed)"
+        echo -e "${YELLOW}NOT RUNNING${NC} (Docker not installed)"
     fi
     ((WARN++))
 fi
@@ -88,9 +88,9 @@ fi
 # Check CoderCo dotfiles
 printf "  %-20s" "Dotfiles:"
 if [ -f "${HOME}/.coderco-dotfiles/coderco.sh" ]; then
-    echo -e "${GREEN}✓ INSTALLED${NC}"
+    echo -e "${GREEN}INSTALLED${NC}"
 else
-    echo -e "${YELLOW}⚠ NOT INSTALLED${NC}"
+    echo -e "${YELLOW}NOT INSTALLED${NC}"
     echo -e "    ${YELLOW}Run: ~/.coderco-dotfiles/install.sh${NC}"
     ((WARN++))
 fi
@@ -102,13 +102,13 @@ echo "==========================================================================
 echo ""
 
 if [ $FAIL -eq 0 ] && [ $WARN -eq 0 ]; then
-    echo -e "${GREEN}✓ Your environment is ready!${NC}"
+    echo -e "${GREEN}Your environment is ready!${NC}"
     echo "All required tools are installed and configured."
 elif [ $FAIL -eq 0 ]; then
-    echo -e "${YELLOW}⚠ Almost ready!${NC}"
+    echo -e "${YELLOW}Almost ready!${NC}"
     echo "All required tools are installed, but check the warnings above."
 else
-    echo -e "${RED}✗ Some tools are missing.${NC}"
+    echo -e "${RED}Some tools are missing.${NC}"
     echo "Install missing tools to get started. Check the README for instructions."
 fi
 

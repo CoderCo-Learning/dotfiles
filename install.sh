@@ -76,6 +76,7 @@ if [ -f "${SCRIPT_DIR}/coderco.sh" ] && [ "$SCRIPT_DIR" != "$DOTFILES_DIR" ]; th
     echo "Copying dotfiles from local repository..."
     cp "${SCRIPT_DIR}/coderco.sh" "${DOTFILES_DIR}/"
     [ -f "${SCRIPT_DIR}/verify.sh" ] && cp "${SCRIPT_DIR}/verify.sh" "${DOTFILES_DIR}/"
+    [ -f "${SCRIPT_DIR}/.zshrc" ] && cp "${SCRIPT_DIR}/.zshrc" "${DOTFILES_DIR}/"
 fi
 
 # Download if not available locally
@@ -101,6 +102,25 @@ if [ ! -f "$RC_FILE" ]; then
     touch "$RC_FILE"
 fi
 
+# Install zshrc (optional - only if user wants it)
+if [[ "$CURRENT_SHELL" == "zsh" ]]; then
+    echo ""
+    read -p "Install custom .zshrc configuration? (y/N) " -n 1 -r
+    echo ""
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        ZSHRC_SOURCE="${DOTFILES_DIR}/.zshrc"
+        if [ -f "$ZSHRC_SOURCE" ]; then
+            if [ -f "${HOME}/.zshrc" ] && ! grep -q "CoderCo zshrc" "${HOME}/.zshrc" 2>/dev/null; then
+                echo -e "${YELLOW}Backing up existing .zshrc to .zshrc.backup${NC}"
+                cp "${HOME}/.zshrc" "${HOME}/.zshrc.backup"
+            fi
+            cp "$ZSHRC_SOURCE" "${HOME}/.zshrc"
+            echo -e "${GREEN}Custom .zshrc installed${NC}"
+            echo -e "${YELLOW}Note: Your old .zshrc was backed up to .zshrc.backup${NC}"
+        fi
+    fi
+fi
+
 # Check if already sourced
 SOURCE_LINE="# CoderCo Dotfiles\n[ -f ${CODERCO_SH} ] && source ${CODERCO_SH}"
 if grep -q "coderco.sh" "$RC_FILE" 2>/dev/null; then
@@ -110,12 +130,12 @@ else
     echo "Adding CoderCo dotfiles to ${RC_FILE}..."
     echo "" >> "$RC_FILE"
     echo -e "$SOURCE_LINE" >> "$RC_FILE"
-    echo -e "${GREEN}✓ Added to ${RC_FILE}${NC}"
+    echo -e "${GREEN}Added to ${RC_FILE}${NC}"
 fi
 
 echo ""
 echo "============================================================================"
-echo -e "${GREEN}✓ Installation complete!${NC}"
+echo -e "${GREEN}Installation complete!${NC}"
 echo "============================================================================"
 echo ""
 echo "Next steps:"
